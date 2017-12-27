@@ -23,6 +23,6 @@ def main():
 ##      Takes in the path to an input GPX track file and appends the GPX track data to a target geoJSON file
 def update_geojson(in_gpx, target_geojson):
     # Convert GPX to a temporary geojson file - will be appended in second step to target geojson
-    ogr2ogr.main(["", "-f", "geoJSON", in_gpx,"tracks",   "tmp.geoJSON", "-fieldTypeToString", "DateTime"])
-
+    ogr2ogr.main(["", "-f", "geojson", in_gpx, "tracks",   "tmp.geoJSON", "-fieldTypeToString", "DateTime"])
+    
 
