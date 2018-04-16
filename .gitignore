@@ -1,2 +1,5 @@
 api_keys.py
+secret.txt
+*.csv
+
 

@@ -7,11 +7,13 @@
 ## Requires the Strava python API libraries and the Python port of ogr2ogr.
 ## Note - this software is in beta and may not work for your specific usecase. It is not written or intended for widespread use.
 
+import ogr2ogr
 
 # Fetch API keys from external Python file. Not synced with Github repo
 from api_keys import *
-
-import ogr2ogr
+import sys
+sys.path.append("/usr/bin")
+import ogrmerge
 
 from stravalib.client import Client
 
@@ -24,5 +26,7 @@ def main():
 def update_geojson(in_gpx, target_geojson):
     # Convert GPX to a temporary geojson file - will be appended in second step to target geojson
     ogr2ogr.main(["", "-f", "geojson", in_gpx, "tracks",   "tmp.geoJSON", "-fieldTypeToString", "DateTime"])
-    
+    # placeholder
+    ogrmerge.process([""])
+
 
