@@ -6,19 +6,25 @@ csvs = glob.glob(os.path.join(csv_dir, "*.csv"))
 # Iterate through directory of csv files
 for a_csv in csvs:
 	# Check if this csv is in the list of csv files processed
-	f = open(os.path.join(csv_dir, "processed.txt"), 'r')
-	f = f.read().split("\n")
-	if a_csv in f:
+	try:
+		f = open(os.path.join(csv_dir, "processed.txt"), 'r')
+		f = f.read().split("\n")
+		if a_csv in f:
+			del f
+			continue
 		del f
-		continue
-	del f
+	except:
+		pass
 	current_dataset = open(a_csv, 'r')
 	current_dataset_r = current_dataset.read().split("\n")
 	activityid = current_dataset_r[0].index("act_id")
-	lastid = current_dataset[1].split(",")[activityid]
+	try:
+		lastid = current_dataset_r[1].split(",")[activityid]
+	except:
+		continue
 	poly_points = {}
 	poly_points[lastid] = []
-	for l in current_dataset_r[1:]
+	for l in current_dataset_r[1:]:
 		# Get the point info for the current polyline
 		l = l.split(",")
 		lat, lon = l[-2:]
