@@ -8,24 +8,25 @@ import pandas as pd
 import datetime
 
 #Global Variables - put your data in the file 'client.secret' and separate the fields with a comma!
-client_id, secret = open('secret.txt').read().strip().split(',')
+client_id, secret, token = open('secret.txt').read().strip().split(',')
 port = 5000
 url = 'http://localhost:%d/authorized' % port
 allDone = False
 types = ['time', 'distance', 'latlng', 'altitude', 'velocity_smooth', 'moving', 'grade_smooth', 'temp']
-limit = 1
+limit = 3
 
 #Create the strava client, and open the web browser for authentication
 client = stravalib.client.Client()
 authorize_url = client.authorization_url(client_id=client_id, redirect_uri=url)
 print 'Opening: %s' % authorize_url
-webbrowser.open(authorize_url)
+#webbrowser.open(authorize_url)
 
 #Define the web functions to call from the strava API
-def UseCode(code):
+def UseCode():
+  print('w')
   #Retrieve the login code from the Strava server
-  access_token = client.exchange_code_for_token(client_id=client_id,
-                                                client_secret=secret, code=code)
+  #access_token = client.exchange_code_for_token(client_id=client_id, client_secret=secret, code=code)
+  access_token = token
   # Now store that access token somewhere (for now, it's just a local variable)
   client.access_token = access_token
   athlete = client.get_athlete()
@@ -91,7 +92,7 @@ def split_long(series):
 def concatdf(df_lst):
     return pd.concat(df_lst, ignore_index=False)
 
-class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
+class MyHandler():
   #Handle the web data sent from the strava API
 
   def do_HEAD(self):
@@ -99,11 +100,11 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
 
   def do_GET(self):
     #Get the API code for Strava
-    self.wfile.write('<script>window.close();</script>')
-    code = urlparse.parse_qs(urlparse.urlparse(self.path).query)['code'][0]
+    #self.wfile.write('<script>window.close();</script>')
+    #code = urlparse.parse_qs(urlparse.urlparse(self.path).query)['code'][0]
 
     #Login to the API
-    client  = UseCode(code)
+    client  = UseCode()
 
     #Retrieve the last limit activities
     activities = GetActivities(client,limit)
@@ -136,6 +137,5 @@ class MyHandler(BaseHTTPServer.BaseHTTPRequestHandler):
     df_total.to_csv('RideData_' + str(now.strftime('%Y%m%d%H%M%S')) + '.csv')
 
 ###Run the program to login and grab data###
-httpd = BaseHTTPServer.HTTPServer(('localhost', port), MyHandler)
-while not allDone:
-    httpd.handle_request()
+c = MyHandler()
+c.do_HEAD()
