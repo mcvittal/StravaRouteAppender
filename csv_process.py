@@ -60,3 +60,14 @@ for a_csv in csvs:
         f.write(a_csv)
         f.write("\n")
         f.close()
+
+
+# Put this json file into another one with a variable declaration
+f = open('strava.geojson', 'r').read()
+g = open('currently_ridden.geojson', 'w')
+g.write('var ridden = ')
+g.write(f)
+g.write(";")
+g.close()
+
+
