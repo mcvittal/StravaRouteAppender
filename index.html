@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	<title>2018 Tour - Blog and map</title>
+	<!-- This tutorial is based on the official Leaflet quickstart: http://leafletjs.com/examples/quick-start/ -->
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="stylesheet" type="text/css" href="indexstyles.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+	<script src="instafeed.min.js"></script>
+
+</head>
+
+<body>
+	<div class="row">
+		<div class="col-xs-12">
+			<div id="mapid"></div>
+
+			<script src="route.geojson" type="text/javascript"></script>
+			<script src="currently_ridden.geojson" type="text/javascript"></script>
+
+			<script type='text/javascript'>
+				var mymap = L.map('mapid').setView([46, -70], 4);
+
+				L.tileLayer('http://{s}.tiles.wmflabs.org/hikebike/{z}/{x}/{y}.png', {
+					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> Access website with just map <a href="map.html">here</a>. Map auto updates with completed daily distances <a href="https://www.strava.com/athletes/9805768">from my Strava account</a> using <a href="https://github.com/mcvittal/stravarouteappender">this software I wrote</a>.'
+				}).addTo(mymap);
+
+
+				var points = new L.geoJson(route).setStyle({ dashArray: '1,6' }).addTo(mymap);
+				var riddenLine = new L.geoJson(ridden).setStyle({ color: '#00ff00' }).addTo(mymap);
+				var feed = new Instafeed({
+					get: 'user',
+					userId: '7757796172',
+					accessToken: '7757796172.def8b31.6f89789a73c34cdd9056906d9d24dec2'
+				});
+				feed.run();
+			</script>
+
+			<div id="firstText">
+				<h0>May 15 - Preparations well underway!</h0>
+				<h1>Daily distances are mostly set, a paper mapbook is printed, and multiple test-packs of my bike have been done! Only have
+					a few small things left to purchase and take care of, but things are well underway for a great summer. Departure date
+					is still a go for May 25th.</h1>
+
+			</div>
+		</div>
+		<div class="col-xs-12">
+			<div class="infobar">
+			</div>
+
+			<!--
+			<div>
+			<p>
+			<i>
+			The map above shows my planned route (dashed blue line) along with my actual daily distances overlaid in green. 
+			Daily routes are pulled from my <a href="https://www.strava.com/athletes/9805768">Strava account</a> 
+			and the GeoJSON mapped is updated twice a day using cron and <a href="https://github.com/mcvittal/stravarouteappender">this code</a> 
+			that you can find on my GitHub.
+			</i>
+			
+			</p>
+			</div>
+			-->
+
+			<div id="instafeed" style="width:100%; height: 100px; background-color:darkgreen; margin-top: 100vh;"></div>
+		</div>
+	</div>
+</body>
+
+</html>
