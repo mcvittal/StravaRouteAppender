@@ -1,6 +1,8 @@
 body, .row, .col-xs-12 {
     margin: 0 !important;
     padding: 0 !important;
+    position: relative;
+    overflow: hidden;
 }
 
 #mapid {
@@ -30,6 +32,13 @@ body, .row, .col-xs-12 {
     top: 0;
 }
 
+@media screen and (max-width: 768px) {
+    #textbox-row {
+        margin: 0;
+        width: 100vw;
+    }
+}
+
 h0 {
     font-family: arial;
     font-size: 1em !important;
@@ -49,7 +58,4 @@ h1 {
     bottom: 0;
     width: 100%;
     z-index: 3
-}
-#instafeed {
-    white-space: nowrap;
 }

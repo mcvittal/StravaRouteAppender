@@ -17,7 +17,9 @@
 	<script type="text/javascript" src="jcarousel.ajax.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="indexstyles.css">
+	<link rel="stylesheet" type="text/css" href="jcarouselstyles.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css">
 	<link rel="shortcut icon" type="image/x-icon" href="docs/images/favicon.ico" />
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
 	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
@@ -77,10 +79,19 @@
 					});
 					feed.run();
 				</script>
-
-				<div class="jcarousel"><div id="instafeed"></div></div>
-				<a class="jcarousel-control-prev" href="#">Prev</a>
-				<a class="jcarousel-control-next" href="#">Next</a>
+				<center>
+					<div class="jcarousel-wrapper">
+						<div class="jcarousel">
+							<div id="instafeed"></div>
+						</div>
+						<a class="jcarousel-control-prev" href="#">
+							<i class="fas fa-angle-left"></i>
+						</a>
+						<a class="jcarousel-control-next" href="#">
+							<i class="fas fa-angle-right"></i>
+						</a>
+					</div>
+				</center>
 			</div>
 		</div>
 
