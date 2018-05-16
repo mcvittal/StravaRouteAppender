@@ -5,13 +5,16 @@
 
 	<title>2018 Tour - Blog and map</title>
 	<!-- This tutorial is based on the official Leaflet quickstart: http://leafletjs.com/examples/quick-start/ -->
-	
+
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6/jquery.min.js"></script>
 	<script type="text/javascript" src="jquery-simplyscroll-2.0.5/jquery.simplyscroll.min.js"></script>
 	<link rel="stylesheet" href="jquery-simplyscroll-2.0.5/jquery.simplyscroll.css" media="all" type="text/css">
 
+	<!-- Script CDNs for Carousel -->
+	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jcarousel/0.3.7/jquery.jcarousel.min.js"></script>
+	<script type="text/javascript" src="jcarousel.ajax.js"></script>
 
 	<link rel="stylesheet" type="text/css" href="indexstyles.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -45,13 +48,13 @@
 				});
 				feed.run();
 				$("#instafeed").simplyScroll({
-                    			autoMode: 'bounce',
-                    			startOnLoad: true,
-                    			auto: true,
-                    			speed: 1,
-                    			pauseOnHover: true,
-                    			pauseOnTouch: true
-                		});
+					autoMode: 'bounce',
+					startOnLoad: true,
+					auto: true,
+					speed: 1,
+					pauseOnHover: true,
+					pauseOnTouch: true
+				});
 			</script>
 
 			<div id="textbox-row">
@@ -65,7 +68,19 @@
 				<script src="instafeed.min.js"></script>
 
 
-				<div id="instafeed"></div>
+				<script type='text/javascript'>
+
+					var feed = new Instafeed({
+						get: 'user',
+						userId: '7757796172',
+						accessToken: '7757796172.def8b31.6f89789a73c34cdd9056906d9d24dec2'
+					});
+					feed.run();
+				</script>
+
+				<div class="jcarousel"><div id="instafeed"></div></div>
+				<a class="jcarousel-control-prev" href="#">Prev</a>
+				<a class="jcarousel-control-next" href="#">Next</a>
 			</div>
 		</div>
 
