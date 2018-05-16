@@ -12,6 +12,8 @@
 
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
 	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+	<script src="instafeed.min.js"></script>
+
 
 </head>
 <body>
@@ -71,11 +73,17 @@
 	
 	var points = new L.geoJson(route).setStyle({dashArray:'1,6'}).addTo(mymap);
 	var riddenLine = new L.geoJson(ridden).setStyle({color:'#00ff00'}).addTo(mymap);
+	var feed = new Instafeed({
+		get: 'user',
+		userId: '7757796172',
+		accessToken: '7757796172.def8b31.6f89789a73c34cdd9056906d9d24dec2'
+	});
+	feed.run();
 </script>
 
  <div id="firstText">
 <h0>May 15 - Preparations well underway!</h0>
-<h1>Daily distances are mostly set, a paper mapbook is printed, and multiple test-packs of my bike have been done! Only have a few small things left to purchase and take care of, but things are well underway for a great summer.</h1>
+<h1>Daily distances are mostly set, a paper mapbook is printed, and multiple test-packs of my bike have been done! Only have a few small things left to purchase and take care of, but things are well underway for a great summer. Departure date is still a go for May 25th.</h1>
 
 </div>
 
@@ -95,6 +103,8 @@ that you can find on my GitHub.
 </p>
 </div>
 -->
+
+<div id="instafeed"></div>
 </body>
 
 </html>
