@@ -24,6 +24,7 @@
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
 	<script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
 	<script src="instafeed.min.js"></script>
+	<script src="leaflet.ajax.min.js"></script>
 
 </head>
 
@@ -41,7 +42,7 @@
 					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> Access website with just map <a href="map.html">here</a>. Map auto updates with completed daily distances <a href="https://www.strava.com/athletes/9805768">from my Strava account</a> using <a href="https://github.com/mcvittal/stravarouteappender">this software I wrote</a>.'
 				}).addTo(mymap);
 				var points = new L.geoJson(route).setStyle({ dashArray: '1,6' }).addTo(mymap);
-				var riddenLine = new L.geoJson(ridden).setStyle({ color: '#00ff00' }).addTo(mymap);
+				var riddenLine = new L.geoJson(ridden).setStyle({color:'#00ff00'}).addTo(mymap);
 				var feed = new Instafeed({
 					get: 'user',
 					userId: '7757796172',
